@@ -8,11 +8,12 @@ queries:
 languages:
 
 paths:
-  - src/main/
-  - python/
+  - .
 
 paths-ignore:
   - src/test/
+  - images/
+  - templates/
   - '**/node_modules/'
 
 build: |
