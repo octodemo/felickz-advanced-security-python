@@ -3,9 +3,10 @@ name: "CodeQL config"
 disable-default-queries: false
 
 queries:
-  - uses: security-and-quality
+  - uses: java-security-and-quality
+  - uses: python-security-and-quality
 
-languages: java,python
+languagesasdf: java,python
 
 paths:
   - .
