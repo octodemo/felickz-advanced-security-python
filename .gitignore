@@ -133,3 +133,7 @@ dmypy.json
 
 # CodeQL
 pythondb/
+codeql_databases/
+
+#MacOS
+.DS_Store

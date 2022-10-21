@@ -4140,57 +4140,9 @@
         "locations" : [ {
           "physicalLocation" : {
             "artifactLocation" : {
-              "uri" : "server/models/books.py",
+              "uri" : "server/__init__.py",
               "uriBaseId" : "%SRCROOT%",
               "index" : 4
-            }
-          }
-        } ],
-        "message" : {
-          "text" : ""
-        },
-        "level" : "none",
-        "descriptor" : {
-          "id" : "py/diagnostics/successfully-extracted-files",
-          "index" : 1
-        },
-        "properties" : {
-          "formattedMessage" : {
-            "text" : ""
-          },
-          "relatedLocations" : [ ]
-        }
-      }, {
-        "locations" : [ {
-          "physicalLocation" : {
-            "artifactLocation" : {
-              "uri" : "server/routes.py",
-              "uriBaseId" : "%SRCROOT%",
-              "index" : 2
-            }
-          }
-        } ],
-        "message" : {
-          "text" : ""
-        },
-        "level" : "none",
-        "descriptor" : {
-          "id" : "py/diagnostics/successfully-extracted-files",
-          "index" : 1
-        },
-        "properties" : {
-          "formattedMessage" : {
-            "text" : ""
-          },
-          "relatedLocations" : [ ]
-        }
-      }, {
-        "locations" : [ {
-          "physicalLocation" : {
-            "artifactLocation" : {
-              "uri" : "server/webapp.py",
-              "uriBaseId" : "%SRCROOT%",
-              "index" : 3
             }
           }
         } ],
@@ -4260,9 +4212,57 @@
         "locations" : [ {
           "physicalLocation" : {
             "artifactLocation" : {
-              "uri" : "server/__init__.py",
+              "uri" : "server/webapp.py",
+              "uriBaseId" : "%SRCROOT%",
+              "index" : 3
+            }
+          }
+        } ],
+        "message" : {
+          "text" : ""
+        },
+        "level" : "none",
+        "descriptor" : {
+          "id" : "py/diagnostics/successfully-extracted-files",
+          "index" : 1
+        },
+        "properties" : {
+          "formattedMessage" : {
+            "text" : ""
+          },
+          "relatedLocations" : [ ]
+        }
+      }, {
+        "locations" : [ {
+          "physicalLocation" : {
+            "artifactLocation" : {
+              "uri" : "server/models/books.py",
               "uriBaseId" : "%SRCROOT%",
               "index" : 6
+            }
+          }
+        } ],
+        "message" : {
+          "text" : ""
+        },
+        "level" : "none",
+        "descriptor" : {
+          "id" : "py/diagnostics/successfully-extracted-files",
+          "index" : 1
+        },
+        "properties" : {
+          "formattedMessage" : {
+            "text" : ""
+          },
+          "relatedLocations" : [ ]
+        }
+      }, {
+        "locations" : [ {
+          "physicalLocation" : {
+            "artifactLocation" : {
+              "uri" : "server/routes.py",
+              "uriBaseId" : "%SRCROOT%",
+              "index" : 2
             }
           }
         } ],
@@ -4308,7 +4308,7 @@
       }
     }, {
       "location" : {
-        "uri" : "server/models/books.py",
+        "uri" : "server/__init__.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 4
       }
@@ -4320,7 +4320,7 @@
       }
     }, {
       "location" : {
-        "uri" : "server/__init__.py",
+        "uri" : "server/models/books.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 6
       }

@@ -234,6 +234,7 @@ Output
 Compiling query plan for /opt/homebrew/Caskroom/codeql-bundle/2.9.3/codeql/qlpacks/codeql/python-queries/0.1.3/Security/CWE-798/HardcodedCredentials.ql.
 [157/166] Found in cache: /opt/homebrew/Caskroom/codeql-bundle/2.9.3/codeql/qlpacks/codeql/python-queries/0.1.3/Security/CWE-798/HardcodedCredentials.ql.
 HardcodedCredentials.ql                    : [130/166 eval 2.5s] Results written to codeql/python-queries/Security/CWE-798/HardcodedCredentials.bqrs.
+```
 
 ### baseline
 
@@ -252,3 +253,25 @@ export PAT="<grab a token>"
 echo $PAT | codeql github upload-results --repository=octodemo/felickz-advanced-security-python --commit=ed08e82a4a2b99bdefe5c92d6ac916872480d677 --ref=refs/pull/3/head --sarif=./results.sarif --github-auth-stdin
 ```
 
+# DB Cluster CLI Commands
+
+Installed openjdk17(`brew install openjdk@17`), maven(`brew install --ignore-dependencies maven`), Added a java project
+```
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+```
+
+Create CodeQL DB for multi lang cluster
+
+```
+codeql database create codeql_databases --db-cluster --language=java,python --command='mvn clean install'  --codescanning-config='./.github/codeql/codeql-config.yml' --no-run-unnecessary-builds --overwrite
+```
+
+run scan for each:
+
+```
+codeql database analyze codeql_databases/python --format=sarif-latest --sarif-category=".github/workflows/codeql-analysis.yml:analyze/language:python" --output=./python-results.sarif
+```
+
+```
+codeql database analyze codeql_databases/java --format=sarif-latest --sarif-category=".github/workflows/codeql-analysis.yml:analyze/language:java" --output=./java-results.sarif
+```
