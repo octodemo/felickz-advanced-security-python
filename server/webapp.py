@@ -9,6 +9,7 @@ TEMPLATES = os.path.join(ROOT, 'templates')
 
 flaskapp = Flask("BookStore", template_folder=TEMPLATES)
 flaskapp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+flaskapp.secret_key = 'SECRET_KEY'
 
 database_uri = os.environ.get('SQLITE_URI', ':memory:')
 
