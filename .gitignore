@@ -130,3 +130,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# CodeQL
+pythondb/
+codeql_databases/
+
+#MacOS
+.DS_Store

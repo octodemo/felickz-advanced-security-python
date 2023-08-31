@@ -1,0 +1,22 @@
+name: "CodeQL config"
+
+disable-default-queries: false
+
+queries:
+  - uses: code-scanning
+  #Doesnt work in actions env: Error: The configuration file "codeql-config.yml" is invalid: property "queries.uses" must be a built-in suite (security-extended or security-and-quality), a relative path, or be of the form "owner/repo[/path]@ref"
+  #- uses: java-security-and-quality
+  #- uses: python-security-and-quality
+
+#this has no impact... languages: java,python
+
+paths:
+  - .
+
+paths-ignore:
+  - src/test/
+  - images/
+  - templates/
+  - '**/node_modules/'
+
+build: |

@@ -207,3 +207,71 @@ Check out [GitHub's Security feature page](https://github.com/features/security)
 
 Check out the Code Scanning [documentation](https://docs.github.com/en/free-pro-team@latest/github/finding-security-vulnerabilities-and-errors-in-your-code/about-code-scanning) for additional configuration options and technical details.
 
+## CLI Commands
+### database create
+```
+codeql database create pythondb --language=python --codescanning-config='./.github/codeql/codeql-config.yml' --overwrite
+```
+
+Output
+   - is extracting file we expect
+```
+[2022-09-16 10:05:43] [build-stdout] [INFO] [2] Extracted file /Users/felickz/Repos/felickz-advanced-security-python/server/webapp.py in 25ms
+```
+
+### database analyze
+>If no queries are specified, the CLI will automatically determine a suitable set of queries to run. In particular, if a Code Scanning configuation file was specfied at database creation time using --codescanning-config then the queries from this will be used. Otherwise, the default queries for the langauge being analyzed will be used.
+
+```
+codeql database analyze ./pythondb --format=sarif-latest --sarif-category=".github/workflows/codeql-analysis.yml:analyze/language:python" --output=./results.sarif
+```
+
+Output
+- is running our expected security-extended queries (HardcodedCredentials.ql)
+
+```
+[156/166] Found in cache: /opt/homebrew/Caskroom/codeql-bundle/2.9.3/codeql/qlpacks/codeql/python-queries/0.1.3/Security/CWE-732/WeakFilePermissions.ql.
+Compiling query plan for /opt/homebrew/Caskroom/codeql-bundle/2.9.3/codeql/qlpacks/codeql/python-queries/0.1.3/Security/CWE-798/HardcodedCredentials.ql.
+[157/166] Found in cache: /opt/homebrew/Caskroom/codeql-bundle/2.9.3/codeql/qlpacks/codeql/python-queries/0.1.3/Security/CWE-798/HardcodedCredentials.ql.
+HardcodedCredentials.ql                    : [130/166 eval 2.5s] Results written to codeql/python-queries/Security/CWE-798/HardcodedCredentials.bqrs.
+```
+
+### baseline
+
+```
+codeql database print-baseline ./pythondb
+```
+
+Output:
+>Counted a baseline of 78 lines of code for python.
+
+### github upload-results
+
+```
+export PAT="<grab a token>"
+
+echo $PAT | codeql github upload-results --repository=octodemo/felickz-advanced-security-python --commit=ed08e82a4a2b99bdefe5c92d6ac916872480d677 --ref=refs/pull/3/head --sarif=./results.sarif --github-auth-stdin
+```
+
+# DB Cluster CLI Commands
+
+Installed openjdk17(`brew install openjdk@17`), maven(`brew install --ignore-dependencies maven`), Added a java project
+```
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+```
+
+Create CodeQL DB for multi lang cluster
+
+```
+codeql database create codeql_databases --db-cluster --language=java,python --command='mvn clean install'  --codescanning-config='./.github/codeql/codeql-config.yml' --no-run-unnecessary-builds --overwrite
+```
+
+run scan for each:
+
+```
+codeql database analyze codeql_databases/python --format=sarif-latest --sarif-category=".github/workflows/codeql-analysis.yml:analyze/language:python" --output=./python-results.sarif
+```
+
+```
+codeql database analyze codeql_databases/java --format=sarif-latest --sarif-category=".github/workflows/codeql-analysis.yml:analyze/language:java" --output=./java-results.sarif
+```

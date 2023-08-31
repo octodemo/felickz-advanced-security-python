@@ -15,3 +15,20 @@ database_uri = os.environ.get('SQLITE_URI', ':memory:')
 
 database = sqlite3.connect(database_uri, check_same_thread=False)
 cursor = database.cursor()
+
+HOST = "acme-trading.com"
+PORT = 8000
+USERNAME = "road_runner"
+PASSWORD = "insecure_pwd"
+
+
+def sell(client, units):
+
+    conn = client.connect(
+        host=HOST,
+        port=PORT,
+        username=USERNAME,
+        password=PASSWORD)
+
+    conn.cmd("sell", 1000)
+    conn.close()
