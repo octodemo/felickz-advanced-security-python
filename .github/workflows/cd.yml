@@ -1,0 +1,21 @@
+
+name: Component Detection
+
+on:
+  push:
+    branches: [ "main" ]
+
+permissions:
+  contents: write
+
+jobs:
+  CD-Scan:
+    permissions:
+      contents: write # required to upload to the Dependency submission API
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout the code
+      uses: actions/checkout@v4
+    - name: Component Detection dependency submission action
+      uses: advanced-security/component-detection-dependency-submission-action@v0.0.2
+          
